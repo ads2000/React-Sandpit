@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
-
+ 
 var coffeeSources = ['scripts/hello.coffee'],
     jsSources = ['scripts/*.js'],
     sassSources = ['styles/*.scss'],
@@ -22,12 +22,10 @@ gulp.task('copy', function() {
   .pipe(gulp.dest(outputDir))
 });
 
-gulp.task('sass', function() {
-  gulp.src(sassSources)
-  .pipe(sass({style: 'expanded'}))
-    .on('error', gutil.log)
-  .pipe(gulp.dest('assets'))
-  .pipe(connect.reload())
+gulp.task('sass', function () {
+  return gulp.src('./styles/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./styles'));
 });
 
 gulp.task('coffee', function() {
@@ -63,5 +61,8 @@ gulp.task('html', function() {
   gulp.src(htmlSources)
   .pipe(connect.reload())
 });
+
+
+
 
 gulp.task('default', ['html', 'coffee', 'js', 'sass', 'connect', 'watch']);
