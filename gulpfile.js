@@ -3,8 +3,12 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     coffee = require('gulp-coffee'),
     connect = require('gulp-connect'),
-    uglify = require('gulp-uglify'),
     concat = require('gulp-concat');
+    babel = require('gulp-babel');
+    uglify = require('gulp-uglify');
+    pump = require('pump');
+ 
+
  
 var coffeeSources = ['scripts/hello.coffee'],
     jsSources = ['scripts/*.js'],
@@ -12,10 +16,6 @@ var coffeeSources = ['scripts/hello.coffee'],
     htmlSources = ['**/*.html'],
     outputDir = 'assets';
 
-
-gulp.task('log', function() {
-  gutil.log('== My First Task ==')
-});
 
 gulp.task('copy', function() {
   gulp.src('index.html')
@@ -25,7 +25,7 @@ gulp.task('copy', function() {
 gulp.task('sass', function () {
   return gulp.src('./styles/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./styles'));
+    .pipe(gulp.dest('./dist'));
 });
 
  gulp.task('coffee', function() {
@@ -63,6 +63,22 @@ gulp.task('html', function() {
 });
 
 
+gulp.task('babel', () => {
+    return gulp.src('scripts/main.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('dist-unminified'));
+});
 
+gulp.task('compress', ['babel'] , function (cb) {
+  pump([
+        gulp.src('dist-unminified/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
+});
 
-gulp.task('default', ['html', 'coffee', 'sass', 'connect', 'watch']);
+gulp.task('default', ['html', 'babel', 'compress', 'coffee', 'sass', 'connect', 'watch']);

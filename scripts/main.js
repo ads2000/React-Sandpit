@@ -29,6 +29,31 @@ class Calc {
 
 }
 
-var a = new Calc(7,30,300000)
 
-document.write(a.repayments())
+var submit = document.getElementById('submit');
+
+submit.addEventListener("click", function(){
+
+var principle = document.getElementsByClassName('principle')[0].value
+var rate = document.getElementsByClassName('rate')[0].value
+var term = document.getElementsByClassName('term')[0].value
+
+ 
+
+var a = new Calc(rate,term,principle)
+
+if(principle != "" && rate != "" && term != ""){
+
+  document.getElementsByClassName('repaymentsResult')[0].innerHTML = a.repayments()
+}
+
+else{
+  document.getElementsByClassName('repaymentsResult')[0].innerHTML = "Please fill in all fields"
+}
+
+ return false
+
+
+})
+
+
