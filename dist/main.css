@@ -41,3 +41,7 @@ a:hover {
 
 a:active {
   color: #0cf; }
+
+.repaymentsResult {
+  text-align: center;
+  font-size: 45px; }
