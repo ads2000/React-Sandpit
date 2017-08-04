@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 $primaryColor: #009;
 
 html, body {
@@ -28,4 +30,10 @@ html, body {
  .repaymentsResult{
    text-align: center;
    font-size: 45px;
+}
+
+.border div{
+
+border: 2px solid red;
+
 }

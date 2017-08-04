@@ -64,7 +64,7 @@ gulp.task('html', function() {
 
 
 gulp.task('babel', () => {
-    return gulp.src('scripts/main.js')
+    return gulp.src('scripts/*.js')
         .pipe(babel({
             presets: ['es2015']
         }))
