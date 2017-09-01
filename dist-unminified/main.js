@@ -1,6 +1,16 @@
-"use strict";
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDOM = require('react-DOM');
+
+var _reactDOM2 = _interopRequireDefault(_reactDOM);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -14,27 +24,27 @@ var Calc = function () {
   }
 
   _createClass(Calc, [{
-    key: "monthlyRate",
+    key: 'monthlyRate',
     value: function monthlyRate() {
       return this.rate / 100 / 12;
     }
   }, {
-    key: "term",
+    key: 'term',
     value: function term() {
       return this.duration * 12;
     }
   }, {
-    key: "formula1",
+    key: 'formula1',
     value: function formula1() {
       return this.monthlyRate() * Math.pow(1 + this.monthlyRate(), this.term());
     }
   }, {
-    key: "formula2",
+    key: 'formula2',
     value: function formula2() {
       return Math.pow(1 + this.monthlyRate(), this.term()) - 1;
     }
   }, {
-    key: "repayments",
+    key: 'repayments',
     value: function repayments() {
       var repaymentAmount = this.principle * (this.formula1() / this.formula2());
 

@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-DOM';
+
+
+
 class Calc {
   constructor(rate,duration,principle) {
     this.rate = rate;

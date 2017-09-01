@@ -7,6 +7,7 @@
     "gulp-coffee": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
+    "gulp-react": "^3.1.0",
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
     "gulp-util": "latest"
